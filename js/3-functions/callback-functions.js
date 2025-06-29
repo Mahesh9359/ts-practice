@@ -6,7 +6,7 @@ function processUserInput(callback) {
 }
 processUserInput((name) => console.log(`Hello, ${name}!`)); // Hello, Alice!
 //Error-first callback (Node.js style)
-function divide(a, b, callback) {
+function divide1(a, b, callback) {
     if (b === 0) {
         callback(new Error("Cannot divide by zero"), null);
     }
@@ -14,7 +14,7 @@ function divide(a, b, callback) {
         callback(null, a / b);
     }
 }
-divide(10, 2, (err, result) => {
+divide1(10, 2, (err, result) => {
     if (err)
         console.error(err);
     else
