@@ -14,14 +14,6 @@ function sayHello(name = "Guest") {
     console.log(`Hello, ${name}!`);
 }
 sayHello(); //Hello, Guest!
-//Function returning another function
-function createMultiplier(factor) {
-    return function (num) {
-        return num * factor;
-    };
-}
-const double = createMultiplier(2);
-console.log(double(5)); // 10
 //Recursive function (factorial)
 function fact(n) {
     return n <= 1 ? 1 : n * factorial(n - 1);

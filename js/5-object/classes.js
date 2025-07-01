@@ -1,16 +1,4 @@
 "use strict";
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var _Wallet_balance;
 // 1. Basic class
 class Rectangle {
     constructor(height, width) {
@@ -35,7 +23,7 @@ class Square extends Rectangle {
         super(side, side);
     }
 }
-// 4. Getters/Setters
+// 5. Getters/Setters
 class Temperature {
     constructor(celsius) {
         this.celsius = celsius;
@@ -44,23 +32,32 @@ class Temperature {
         return this.celsius * 1.8 + 32;
     }
 }
-// 5. Private fields (ES2022)
-class Wallet {
-    constructor() {
-        _Wallet_balance.set(this, 0);
+class Rectangle1 {
+    constructor(height, width) {
+        this._height = height;
+        this._width = width;
     }
-    deposit(amount) {
-        __classPrivateFieldSet(this, _Wallet_balance, __classPrivateFieldGet(this, _Wallet_balance, "f") + amount, "f");
-        console.log(__classPrivateFieldGet(this, _Wallet_balance, "f"));
+    get area() {
+        return this._height * this._width;
     }
-    getBalance() {
-        return __classPrivateFieldGet(this, _Wallet_balance, "f");
+    set height(h) {
+        if (h <= 0) {
+            console.log("Height of a rectangle cannot be 0 or negative");
+            return;
+        }
+        this._height = h;
+    }
+    set width(w) {
+        if (w <= 0) {
+            console.log("width of a rectangle cannot be 0 or negative");
+            return;
+        }
+        this._width = w;
     }
 }
-_Wallet_balance = new WeakMap();
-let newWallet = new Wallet();
-newWallet.deposit(100);
-newWallet.deposit(100);
-newWallet.deposit(100);
-newWallet.deposit(100);
-newWallet.deposit(100);
+const rect = new Rectangle1(10, 5);
+console.log(rect.area); // Output: 50
+rect.width = 15;
+console.log(rect.area); // Output: 75
+rect.height = -3; // ❌ Should show error and not update
+console.log(rect.area); // Output: still 75

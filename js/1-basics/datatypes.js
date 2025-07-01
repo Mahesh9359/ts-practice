@@ -1,6 +1,6 @@
 "use strict";
 // String (text) with type annotation
-let greet = "Hello, World!";
+let greet4 = "Hello, World!";
 console.log(typeof greet);
 // Numbers (both integer and float are number type in TS)
 let num1 = 100;
