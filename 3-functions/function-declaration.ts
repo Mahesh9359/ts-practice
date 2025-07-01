@@ -16,14 +16,6 @@ function sayHello(name:string = "Guest"):void {
 }
 sayHello(); //Hello, Guest!
 
-//Function returning another function
-function createMultiplier(factor:number):(num:number)=>number {
-  return function (num:number):number {
-    return num * factor;
-  };
-}
-const double = createMultiplier(2);
-console.log(double(5)); // 10
 
 //Recursive function (factorial)
 function fact(n:number):number {

@@ -6,14 +6,14 @@ function processUserInput(callback: (name: string) => void): void {
 processUserInput((name: string) => console.log(`Hello, ${name}!`)); // Hello, Alice!
 
 //Error-first callback (Node.js style)
-function divide(a: number, b: number, callback: (error: Error | null, result: number | null) => void): void {
+function divide1(a: number, b: number, callback: (error: Error | null, result: number | null) => void): void {
   if (b === 0) {
     callback(new Error("Cannot divide by zero"), null);
   } else {
     callback(null, a / b);
   }
 }
-divide(10, 2, (err, result) => {
+divide1(10, 2, (err, result) => {
   if (err) console.error(err);
   else console.log(result); // 5
 });
