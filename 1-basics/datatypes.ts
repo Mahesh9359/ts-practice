@@ -1,5 +1,5 @@
 // String (text) with type annotation
-let greet: string = "Hello, World!";
+let greet4: string = "Hello, World!";
 console.log(typeof greet);
 
 // Numbers (both integer and float are number type in TS)
